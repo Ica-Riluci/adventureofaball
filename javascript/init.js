@@ -178,7 +178,7 @@ function checklock() {
     var id = ['noobn', 'generaln', 'lordn', 'samurain'];
     for (var i = 0; i < 4; ++i)
         if (sys.hero(i).lv > -1)
-            $('#' + id).get(0).rmClass('locked');
+            $('#' + id[i]).get(0).rmClass('locked');
 }
 
 checklock();
