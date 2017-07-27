@@ -25,7 +25,7 @@ var my_scene = {
 	cd_max : [0, 0, 240, 600],
 	recovering : 0,
 	first_add : 0,
-	color : [0xffff00, 0x00ff00, 0x7f7f00, 0x7f007f, 0x007f7f],
+	color : [0xfff200, 0x268785, 0x0d5661, 0x8a6bbe, 0xe98b2a],
 	dust : [0, 0, 0, 0],
 	score_cnt : 0,
 	skill_level : 0,
@@ -34,7 +34,7 @@ var my_scene = {
     skill_cnt :  [0, 0, 0, 0],
     gamerec : [],
 	delta_depth : 0.02,
-	hero_color : [0xffffff, 0x7f7f00, 0x7f007f, 0x007f7f],
+	hero_color : [0xffffff, 0x0d5661, 0x8a6bbe, 0xe98b2a],
 	resize : function(){
 		this.renderer.setSize(document.documentElement.clientWidth, document.documentElement.clientHeight);
 		this.camera.aspect = document.documentElement.clientWidth / document.documentElement.clientHeight;
@@ -123,7 +123,7 @@ var my_scene = {
 				}
 				if(this.height[j] != 0 || type != 0){
 					geometry = new THREE.BoxGeometry(this.hero_speed * 120, 1, height);
-					material = new THREE.MeshLambertMaterial({color : type == 0 ? 0x00ffff : 0xff0000});
+					material = new THREE.MeshLambertMaterial({color : type == 0 ? 0x545454 : 0xe83015});
 					var ground = new THREE.Mesh(geometry, material);
 					ground.position.x = this.hero_sphere.position.x + this.hero_speed * 600;
 					ground.position.y = j * 1.5 - 1.5;
@@ -178,7 +178,7 @@ var my_scene = {
 				it.position.y += Math.abs(diff_y) > (Math.abs(this.hero_speed_y) + 0.05) ? (Math.abs(this.hero_speed_y) + 0.05) * diff_y / Math.abs(diff_y) : diff_y;
 				it.position.z += Math.abs(diff_z) > (Math.abs(this.hero_speed_z) + 0.05) ? (Math.abs(this.hero_speed_z) + 0.05) * diff_z / Math.abs(diff_z) : diff_z;
 			}
-			if(it.position.x - this.hero_sphere.position.x + eps < -5){
+			if(it.position.x - this.hero_sphere.position.x + eps < -13){
 				this.scene.remove(it);
 				this.items.splice(i, 1);
 			}
@@ -222,7 +222,7 @@ var my_scene = {
 		i = 0;
 		while(i < this.map.length){
 			var it = this.map[i];
-			if(it.position.x - this.hero_sphere.position.x + eps < -13){
+			if(it.position.x - this.hero_sphere.position.x + eps < -this.hero_speed * 60 - 13){
 				this.scene.remove(it);
 				this.scene.remove(this.map_box[i]);
 				this.map.splice(i, 1);
@@ -359,7 +359,7 @@ var my_scene = {
 		if(nowx - Math.floor(nowx / 1000) * 1000 > 900 && this.first_add){
 			this.first_add = 0;
 			var geometry = new THREE.PlaneGeometry(1200, 5);
-			var material = new THREE.MeshLambertMaterial( {color: 0x00ff00, side: THREE.DoubleSide} );
+			var material = new THREE.MeshLambertMaterial( {color: 0xff0000, side: THREE.DoubleSide} );
 			var plane = new THREE.Mesh( geometry, material );
 			plane.position.x = Math.floor(nowx / 1000) * 1000 + 1350;
 			plane.position.z = this.delta_depth;
@@ -367,7 +367,7 @@ var my_scene = {
 			this.plane.push(plane);
 
 			geometry = new THREE.PlaneGeometry(1200, 1);
-			material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+			material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 			plane = new THREE.Mesh(geometry, material);
 			plane.position.x = Math.floor(nowx / 1000) * 1000 + 1350;
 			plane.position.z = 0.01 + this.delta_depth;
@@ -376,7 +376,7 @@ var my_scene = {
 			this.plane.push(plane);
 
 			geometry = new THREE.PlaneGeometry(1200, 1);
-			material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+			material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 			plane = new THREE.Mesh(geometry, material);
 			plane.position.x = Math.floor(nowx / 1000) * 1000 + 1350;
 			plane.position.z = 0.01 + this.delta_depth;
@@ -384,7 +384,7 @@ var my_scene = {
 			this.plane.push(plane);
 
 			geometry = new THREE.PlaneGeometry(1200, 1);
-			material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+			material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 			plane = new THREE.Mesh(geometry, material);
 			plane.position.x = Math.floor(nowx / 1000) * 1000 + 1350;
 			plane.position.y = -1.5;
@@ -458,7 +458,7 @@ var my_scene = {
                     newpro += 3 * this.dust[i];
                 if (i == this.skill)
                     newpro += this.dust[0];
-                while (10 * Math.pow(2, newlevel) <= newpro)
+                while (10 * Math.pow(3, newlevel) <= newpro)
                     ++newlevel;
                 if ((sys.hero(i).lvl == -1) && (newlevel > -1)) {
                     msgs = ' unlock!';
@@ -487,7 +487,7 @@ var my_scene = {
     },
 	game_init : function(){
         this.skill = sys.heroselect;
-        this.skill_level = sys.hero(sys.heroselect).lv;
+        this.skill_level = Math.min(sys.hero(sys.heroselect).lv, 5);
         this.gamerec = [0, 0, 0, 0, 0, 0];
 		for(var i = 0; i < this.items.length; ++i){
 			this.scene.remove(this.items[i].item);
@@ -517,14 +517,14 @@ var my_scene = {
         this.hp_lost = 0;
         this.skill_cnt = [0, 0, 0, 0];
 		var geometry = new THREE.PlaneGeometry(1200, 5);
-		var material = new THREE.MeshLambertMaterial({color: 0x00ff00, side: THREE.DoubleSide} );
+		var material = new THREE.MeshLambertMaterial({color: 0xff0000, side: THREE.DoubleSide} );
 		var plane = new THREE.Mesh(geometry, material);
 		plane.position.x = 350;
 		this.scene.add(plane);
 		this.plane.push(plane);
 
 		geometry = new THREE.PlaneGeometry(1200, 1);
-		material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+		material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 		plane = new THREE.Mesh(geometry, material);
 		plane.position.x = 350;
 		plane.position.y = 1.5;
@@ -533,7 +533,7 @@ var my_scene = {
 		this.plane.push(plane);
 
 		geometry = new THREE.PlaneGeometry(1200, 1);
-		material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+		material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 		plane = new THREE.Mesh(geometry, material);
 		plane.position.x = 350;
 		plane.position.z = 0.01;
@@ -541,7 +541,7 @@ var my_scene = {
 		this.plane.push(plane);
 
 		geometry = new THREE.PlaneGeometry(1200, 1);
-		material = new THREE.MeshLambertMaterial({color: 0x0000ff, side: THREE.DoubleSide} );
+		material = new THREE.MeshLambertMaterial({color: 0xeeeeee, side: THREE.DoubleSide} );
 		plane = new THREE.Mesh(geometry, material);
 		plane.position.x = 350;
 		plane.position.y = -1.5;
@@ -590,14 +590,17 @@ function init(){
 		my_scene.timer = 0;
 		my_scene.renderer = new THREE.WebGLRenderer();
 		my_scene.renderer.setSize(document.documentElement.clientWidth, document.documentElement.clientHeight);
-		my_scene.renderer.setClearColor(0x7f7f7f);
+		my_scene.renderer.setClearColor(0xffffff);
 		$('#gamezone').get(0).appendChild(my_scene.renderer.domElement);
 		first = 0;
-		light = new THREE.PointLight(0xffffff, 2, 200);
+		light = new THREE.PointLight(0xffffff, 1.5, 200);
 		my_scene.scene.add(light);
-		var am_light = new THREE.AmbientLight(0x404040); // soft white light
+		var am_light = new THREE.AmbientLight(0x505050);
 		my_scene.scene.add(am_light);
 	}
+    else{
+        my_scene.scene.remove(my_scene.hero_sphere);
+    }
 
 	my_scene.skill = sys.heroselect;
 	var geometry = new THREE.SphereGeometry(0.25, 32, 32);
