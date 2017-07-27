@@ -431,7 +431,7 @@ var my_scene = {
 		clearInterval(my_timer);
         if (!isquit) {
             showfin();
-            var newdust;
+            var newdust = 0;
             var newlevel;
             var newpro;
             var msgs;
@@ -463,7 +463,7 @@ var my_scene = {
                 }
                 if (i == this.skill) {
                     console.log('updatehero');
-                    filex.updater(i, newlevel, newpro, this.hero_sphere.position.x, newdust, this.score, this.hplost, this.skill_cnt[i]);
+                    filex.updater(i, newlevel, newpro, this.hero_sphere.position.x, this.score, newdust, this.hplost, this.skill_cnt[i]);
                 }
                 else {
                     console.log('updateskill')
