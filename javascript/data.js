@@ -2,9 +2,7 @@ var filex = new function(document) {
     this.data;
     this.load = function() {
         var raw = unescape(document.cookie);
-        console.log(raw);
         if (!(/^aoab\S+/.test(raw))) {
-            console.log('newcookie');
             this.data = '{"noob" : {"lv" : 0, "pro" : 0, "dis" : 0, "dust" : 0, "pts" : 0, "hplost" : 0}, ' +
             '"general" : {"lv" : "-1", "pro" : 0, "dis" : 0, "dust" : 0, "pts" : 0, "hplost" : 0, "restore" : 0}, ' +
             '"lord" : {"lv" : "-1", "pro" : 0, "dis" : 0, "dust" : 0, "pts" : 0, "hplost" : 0, "bonus" : 0}, ' +
@@ -20,15 +18,19 @@ var filex = new function(document) {
         var herotype = arguments[0];
         switch (herotype) {
             case 1 :
+                console.log('generalupdate');
                 this.generalupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             case 2 :
+                console.log('lordupdate');
                 this.lordupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             case 3 :
+                console.log('samuraiupdate');
                 this.samuraiupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             default :
+                console.log('noobupdate');
                 this.noobupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                 break;
         }
