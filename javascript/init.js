@@ -29,8 +29,8 @@ var sys = new function() {
     }
     this.locked = function() {
         if (this.hero(this.heroselect).lv > -1)
-            return true;
-        return false;
+            return false;
+        return true;
     }
     this.lvl = function(x) {
         if (x > -1)
