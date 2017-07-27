@@ -137,10 +137,10 @@ var my_scene = {
 				}
 			}
 						var type = Math.floor(Math.random() * 100);
-			if(type < 90){
+			if(type < 50){
 				type = 0;
 			}
-			else if(type < 95){
+			else if(type < 60){
 				type = 1;
 			}
 			else{
