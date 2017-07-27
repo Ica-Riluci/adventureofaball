@@ -28,7 +28,6 @@ var sys = new function() {
         }
     }
     this.locked = function() {
-        console.log(this.heroselect);
         if (this.hero(this.heroselect).lv > -1)
             return false;
         return true;
@@ -40,7 +39,7 @@ var sys = new function() {
             return '[Locked]';
     }
     this.dis = function() {
-        return this.hero(0).dis + this.hero(1).dis + this.hero(2).dis + this.hero(3).dis;
+        return Math.floor(this.hero(0).dis + this.hero(1).dis + this.hero(2).dis + this.hero(3).dis);
     }
     this.dust = function() {
         return this.hero(0).dust + this.hero(1).dust + this.hero(2).dust + this.hero(3).dust;
@@ -53,26 +52,29 @@ var sys = new function() {
     }
     this.xp = function(index, current) { return current.toString() + '/' + (10 * Math.pow(2, index)).toString(); }
     this.updatecareer = function() {
-        checklock();
         $('#allheros .noobstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(0).lv);
+        $('#allheros .noobstatus .progressspan').get(0).innerHTML = this.xp(this.hero(0).lv, this.hero(0).dust);
         $('#noobs .noobstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(0).lv);
         $('#noobs .noobstatus .progressspan').get(0).innerHTML = this.xp(this.hero(0).lv, this.hero(0).dust);
         $('#noobs #noobdust .cardcontent').get(0).innerHTML = this.hero(0).dust.toString();
         $('#noobs #noobpts .cardcontent').get(0).innerHTML = this.hero(0).pts.toString();
         $('#noobs #noobhplost .cardcontent').get(0).innerHTML = this.hero(0).hplost.toString();
         $('#allheros .generalstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(1).lv);
+        $('#allheros .generalstatus .progressspan').get(0).innerHTML = this.xp(this.hero(1).lv, this.hero(1).dust);
         $('#generals .generalstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(1).lv);
         $('#generals .generalstatus .progressspan').get(0).innerHTML = this.xp(this.hero(1).lv, this.hero(1).dust);
         $('#generals #generaldust .cardcontent').get(0).innerHTML = this.hero(1).dust.toString();
         $('#generals #generalpts .cardcontent').get(0).innerHTML = this.hero(1).pts.toString();
         $('#generals #generalhplost .cardcontent').get(0).innerHTML = this.hero(1).hplost.toString();
         $('#allheros .lordstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(2).lv);
+        $('#allheros .lordstatus .progressspan').get(0).innerHTML = this.xp(this.hero(2).lv, this.hero(2).dust);
         $('#lords .lordstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(2).lv);
         $('#lords .lordstatus .progressspan').get(0).innerHTML = this.xp(this.hero(2).lv, this.hero(2).dust);
         $('#lords #lorddust .cardcontent').get(0).innerHTML = this.hero(2).dust.toString();
         $('#lords #lordpts .cardcontent').get(0).innerHTML = this.hero(2).pts.toString();
         $('#lords #lordhplost .cardcontent').get(0).innerHTML = this.hero(2).hplost.toString();
         $('#allheros .samuraistatus .statusspan').get(0).innerHTML = this.lvl(this.hero(3).lv);
+        $('#allheros .samuraistatus .progressspan').get(0).innerHTML = this.xp(this.hero(3).lv, this.hero(3).dust);
         $('#samurais .samuraistatus .statusspan').get(0).innerHTML = this.lvl(this.hero(3).lv);
         $('#samurais .samuraistatus .progressspan').get(0).innerHTML = this.xp(this.hero(3).lv, this.hero(3).dust);
         $('#samurais #samuraidust .cardcontent').get(0).innerHTML = this.hero(3).dust.toString();
@@ -181,7 +183,6 @@ function checklock() {
             $('#' + id[i]).rmClass('locked');
 }
 
-checklock();
 
 /*
 function msgtest(x) {

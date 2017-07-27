@@ -1,6 +1,5 @@
 function startgame() {
     if (!$('#start-up button.button').hasClass('off')) {
-        console.log('reach');
         init();
     }
     $('#start-up h1').addClass('off');
@@ -64,6 +63,7 @@ function updatetitle() {
 }
 
 function showcareer() {
+    checklock();
     $('#careerwindow').rmClass('off');
     $('#careerwindow .menubar').rmClass('off');
     $('#careerwindow .menubar').rmClass('hide');
