@@ -18,19 +18,15 @@ var filex = new function(document) {
         var herotype = arguments[0];
         switch (herotype) {
             case 1 :
-                console.log('generalupdate');
                 this.generalupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             case 2 :
-                console.log('lordupdate');
                 this.lordupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             case 3 :
-                console.log('samuraiupdate');
                 this.samuraiupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6], arguments[7]);
                 break;
             default :
-                console.log('noobupdate');
                 this.noobupdate(arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
                 break;
         }
@@ -86,6 +82,5 @@ var filex = new function(document) {
 
 
 function store(obj) {
-    console.log(obj);
     document.cookie = escape('aoab' + JSON.stringify(obj));
 }
