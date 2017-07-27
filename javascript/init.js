@@ -183,7 +183,7 @@ function checklock() {
             $('#' + id[i]).rmClass('locked');
 }
 
-checklock();
+sys.updatecareer();
 /*
 function msgtest(x) {
     for (var i = 0; i < x; ++i)
