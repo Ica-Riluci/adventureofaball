@@ -51,9 +51,9 @@ var sys = new function() {
     this.hplost = function() {
         return this.hero(0).hplost + this.hero(1).hplost + this.hero(2).hplost + this.hero(3).hplost;
     }
-    this.xp = function(index, current) { return current.toString() + '/' + (index * Math.pow(2, index)).toString(); }
+    this.xp = function(index, current) { return current.toString() + '/' + (10 * Math.pow(2, index)).toString(); }
     this.updatecareer = function() {
-        this.careerdata = filex.load();
+        checklock();
         $('#allheros .noobstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(0).lv);
         $('#noobs .noobstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(0).lv);
         $('#noobs .noobstatus .progressspan').get(0).innerHTML = this.xp(this.hero(0).lv, this.hero(0).dust);
@@ -173,6 +173,14 @@ function systimer() {
     sys.pausecntback();
     sys.cntfin();
 }
+
+function checklock() {
+    var id = ['noobn', 'generaln', 'lordn', 'samurain'];
+    for (var i = 0; i < 4; ++i)
+        if (sys.hero(i).lv > -1)
+            $('#' + id).get(0).rmClass('locked');
+}();
+
 
 /*
 function msgtest(x) {
