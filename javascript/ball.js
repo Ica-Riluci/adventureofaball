@@ -61,6 +61,7 @@ var my_scene = {
 		if(this.cd % 6 == 0){
 			sys.updatecd(this.cd / 60);
 		}
+        this.cd = Math.floor(this.cd);
 		if(this.cd > 0){
 			--this.cd;
 		}
@@ -552,6 +553,7 @@ var my_scene = {
         sys.updatecd(0);
 	},
 	hp_change : function(delta){
+        delta = Math.floor(delta);
 		if(delta > 0 || (delta < 0 && this.damaged == 0)){
 			this.hp += delta;
 			if(delta < 0){

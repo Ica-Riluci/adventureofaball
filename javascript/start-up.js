@@ -16,6 +16,20 @@ function startgame() {
         $('#herohpcd #heroablity').rmClass('off');
     else
         $('#herohpcd #heroablity').addClass('off');
+    var target = $('#herohp #nameinfo').get(0);
+    switch (sys.heroselect) {
+        case 1 :
+            target.innerHTML = 'General|';
+            break;
+        case 2 :
+            target.innerHTML = 'Lord|';
+            break;
+        case 3 :
+            target.innerHTML = 'Samurai|';
+            break;
+        default :
+            target.innerHTML = 'Noob|'
+    }
 }
 
 function prevhero() {
