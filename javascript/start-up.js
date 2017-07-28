@@ -96,6 +96,8 @@ function backtomenu() {
     $('#herohpcd').addClass('hide');
     $('#ingamepts').rmClass('on');
     $('#ingamepts').addClass('off');
+    if (sys.hero(0).dis > 0)
+        $('#startgame span').get(0).innerHTML = 'CONTINUE';
 }
 
 function resumegame() {
