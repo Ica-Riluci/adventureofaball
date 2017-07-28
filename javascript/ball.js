@@ -440,7 +440,6 @@ var my_scene = {
 		showpause();
 	},
 	endgame : function(){
-        console.log('endgame');
         var isquit = arguments[0] ? arguments[0] : false;
 		clearInterval(my_timer);
         if (!isquit) {
@@ -460,7 +459,7 @@ var my_scene = {
                     newpro += this.dust[0];
                 while (10 * Math.pow(3, newlevel) <= newpro)
                     ++newlevel;
-                if ((sys.hero(i).lvl == -1) && (newlevel > -1)) {
+                if ((sys.hero(i).lv == -1) && (newlevel > -1)) {
                     msgs = ' unlock!';
                     switch (i) {
                         case 1 :
