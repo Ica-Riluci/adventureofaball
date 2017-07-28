@@ -100,7 +100,7 @@ var sys = new function() {
         else
             target.innerHTML = 'in cooldown(' + cd.toString() + 's)';
     }
-    this.updatehp = function(cur, tot) { $('#herohpcd #herohp #hpinfo').get(0).innerHTML = cur.toString() +'/' + tot.toString(); }
+    this.updatehp = function(cur, tot) { $('#herohpcd #herohp #hpinfo').get(0).innerHTML = Math.ceiling(cur).toString() +'/' + tot.toString(); }
     this.settname = function(name) { $('#herohpcd #herohp #nameinfo').get(0).innerHTML = name + '|'; }
     this.modpts = function(pts) { $('#ingamepts').get(0).innerHTML = pts.toString(); }
     this.popmsg = function() {
