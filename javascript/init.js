@@ -187,6 +187,8 @@ function checklock() {
 }
 
 sys.updatecareer();
+if (sys.hero(0).dis > 0)
+    $('#startgame span').innerHTML = 'Continue';
 /*
 function msgtest(x) {
     for (var i = 0; i < x; ++i)
