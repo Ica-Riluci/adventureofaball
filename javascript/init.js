@@ -50,7 +50,7 @@ var sys = new function() {
     this.hplost = function() {
         return this.hero(0).hplost + this.hero(1).hplost + this.hero(2).hplost + this.hero(3).hplost;
     }
-    this.xp = function(index, current) { return current.toString() + '/' + (10 * Math.pow(3, index)).toString(); }
+    this.xp = function(index, current) { return current.toString() + '/' + Math.floor((10 * Math.pow(3, index))).toString(); }
     this.updatecareer = function() {
         $('#allheros .noobstatus .statusspan').get(0).innerHTML = this.lvl(this.hero(0).lv);
         $('#allheros .noobstatus .progressspan').get(0).innerHTML = this.xp(this.hero(0).lv, this.hero(0).pro);
